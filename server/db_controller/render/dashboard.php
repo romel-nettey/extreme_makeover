@@ -26,8 +26,16 @@ if (isset($_POST['is_all_projects'])){
     if($_POST['is_all_projects']) echo json_encode(all_projects());
 }
 
+if (isset($_POST['get_project'])){
+    if($_POST['get_project']) echo json_encode(get_project($_POST['get_project']['project_id']));
+}
+
 if (isset($_POST['is_all_employees'])){
     if($_POST['is_all_employees']) echo json_encode(all_employees());
+}
+
+if (isset($_POST['get_employee_data'])){
+    if($_POST['get_employee_data']) echo json_encode(get_employees($_POST['get_employee_data']['employee_id']));
 }
 
 if (isset($_POST['is_all_clients'])){

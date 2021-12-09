@@ -63,7 +63,7 @@ function render_emp_table(emp_data){
                                             <button
                                                 class="flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-purple-600 rounded-lg dark:text-gray-400 focus:outline-none focus:shadow-outline-gray"
                                                 aria-label="Edit"
-                                                onclick="employee_id_value_sender('${emp_data.employee_id}')"
+                                                onclick="employee_id_value_sender('${emp_data.employee_id}'), get_employee_data('${emp_data.employee_id}')"
                                             >
                                                 <svg
                                                 class="w-5 h-5"
@@ -140,6 +140,7 @@ function delete_employee(employee_id){
 function employee_id_value_sender(employee_id){
     localStorage.setItem("employee_id_value", employee_id);
     window.location.href="./update_employee.html";
+    
 }
 
 function isPrivileged_E(){
@@ -194,3 +195,27 @@ function searched_employees(search = 0){
           },
     });
 }
+
+function get_employee_data(employee_id){
+    $.ajax({
+        type: "post",
+        url: "../server/db_controller/render/dashboard.php",
+        data: {get_employee_data: {employee_id}},
+        success: function(response) {
+            
+            emp_data = response.data;
+            var emp_value = {phone_no:emp_data.phone_no,address:emp_data.address,salary:emp_data.salary};
+            localStorage.setItem(emp_data.email, JSON.stringify(emp_value));
+            localStorage.setItem("emp_email", emp_data.email);
+
+        },
+        error: function (XMLHttpRequest, textStatus, errorThrown) {
+            console.log(textStatus);
+            console.log(errorThrown);
+            console.log(XMLHttpRequest);
+
+        
+        },
+    });
+}
+

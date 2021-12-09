@@ -18,7 +18,7 @@ function update_project_status(){
            if(response.success) {
            
             
-            window.location.href="../index.html";
+            alert("Project status updated");
                
            }
 
@@ -52,7 +52,7 @@ function update_project_cost(){
            if(response.success) {
            
             
-            window.location.href="../index.html";
+            alert("Project cost updated");
                
            }
 
@@ -92,7 +92,7 @@ function update_project_end_date(){
            if(response.success) {
            
             
-            window.location.href="../index.html";
+            alert("Project end date updated");
                
            }
 
@@ -132,7 +132,7 @@ function update_project_start_date(){
            if(response.success) {
            
             
-            window.location.href="../index.html";
+            alert("Project start date updated");
                
            }
 
@@ -166,7 +166,7 @@ function update_project_description(){
            if(response.success) {
            
             
-            window.location.href="../index.html";
+            alert("Project description updated");
                
            }
 
@@ -179,5 +179,22 @@ function update_project_description(){
            
           },
     });
+}
+
+function update_complete(){
+    window.location.href="../index.html";
+}
+
+function display_data_to_update(){
+    project_id = localStorage.getItem("proj_id_value");
+
+    var proj_data = JSON.parse(localStorage.getItem(project_id));
+    $('#update-cost').attr("value",proj_data.cost);
+    $('#update-startD').attr("value",proj_data.start);
+    $('#update-endD').attr("value",proj_data.end);
+    $('#update-descrp').attr("value",proj_data.end);
+    $('#update-descrp').attr("value",proj_data.descrp);
+    localStorage.removeItem(project_id);
+
 }
 

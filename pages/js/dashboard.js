@@ -162,7 +162,7 @@ function render_proj_table(proj_data){
                                     <button
                                         class="flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-purple-600 rounded-lg dark:text-gray-400 focus:outline-none focus:shadow-outline-gray"
                                         aria-label="Edit"
-                                        onclick="proj_id_value_sender('${proj_data.project_id}')"
+                                        onclick="proj_id_value_sender('${proj_data.project_id}'), get_proj_data('${proj_data.project_id}')"
                                     >
                                         <svg
                                         class="w-5 h-5"
@@ -196,6 +196,10 @@ function render_proj_table(proj_data){
                                 </div>
                             </td>
                         </tr>`
+
+        
+        
+        
                         
         return proj_table;
 }
@@ -239,7 +243,10 @@ function delete_project(project_id){
 function proj_id_value_sender(proj_id){
     const project_id= proj_id; 
     localStorage.setItem("proj_id_value", project_id );
-    window.location.href="./pages/update_proj.html";
+    setTimeout(() => {
+        window.location.href="./pages/update_proj.html";
+    }, 500);
+    
 }
 
 
@@ -267,5 +274,25 @@ function isPrivileged_D(){
 
            
           },
+    });
+}
+
+function get_proj_data(project_id){
+    $.ajax({
+        type: "post",
+        url: "./server/db_controller/render/dashboard.php",
+        data: {get_project: {project_id}},
+        success: function(response) {
+            proj_data = response.data;
+            var proj_value = {descrp:proj_data.proj_description,status:proj_data.proj_status,designID:proj_data.Designs_id,start:proj_data.start_date,end:proj_data.end_date,cost:proj_data.proj_cost};
+            localStorage.setItem(project_id, JSON.stringify(proj_value));
+        },
+        error: function (XMLHttpRequest, textStatus, errorThrown) {
+            console.log(textStatus);
+            console.log(errorThrown);
+            console.log(XMLHttpRequest);
+
+        
+        },
     });
 }

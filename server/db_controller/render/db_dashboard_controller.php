@@ -39,6 +39,14 @@ function all_projects(){
     return array('success' => true , 'data' => $projects);
 }
 
+function get_project($proj_id){
+    global $con;
+    $result = mysqli_query($con,"SELECT * FROM `project` WHERE project_id = '$proj_id'");
+    $project = mysqli_fetch_assoc($result);
+    return array('success' => true , 'data' => $project);
+}
+
+
 function search_projects($search = ""){
     global $con;
     if($search == "") $result = mysqli_query($con,"SELECT * FROM `project`");
@@ -59,6 +67,13 @@ function all_employees(){
         array_push($employees,$employee);
     }
     return array('success' => true , 'data' => $employees);
+}
+
+function get_employees($emp_id){
+    global $con;
+    $result = mysqli_query($con,"SELECT * FROM `employee` WHERE employee_id= '$emp_id'");
+    $employee = mysqli_fetch_assoc($result);
+    return array('success' => true , 'data' => $employee);
 }
 
 function search_employees($search = ""){

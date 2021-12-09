@@ -249,3 +249,18 @@ function update_project_description(){
           },
     });
 }
+
+function display_data_to_update_emp(){
+    employee_email = localStorage.getItem("emp_email");
+
+    var emp_data = JSON.parse(localStorage.getItem(employee_email));
+    $('#update-phone').attr("value",emp_data.phone_no);
+    $('#update-addr').attr("value",emp_data.address);
+    $('#update-salary').attr("value",emp_data.salary);
+    localStorage.removeItem(employee_email);
+
+}
+
+function update_complete(){
+    window.location.href="./employees.html";
+}
