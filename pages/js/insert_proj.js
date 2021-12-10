@@ -44,6 +44,11 @@ function insert_project(){
     proj_cost = $('#insert-projCost').val();
     proj_status = $('#status').val();
 
+    if(project_id =="" ||  proj_description =="" || Designs_id =="" || start_date =="" || proj_location =="" || proj_cost =="" || proj_status ==""  ){
+        alert("Fill a feilds");
+        return false;
+    }
+
     let regex_date = /^\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$/;
     test_start_date = regex_date.test(start_date);
     test_end_date =  regex_date.test(end_date);

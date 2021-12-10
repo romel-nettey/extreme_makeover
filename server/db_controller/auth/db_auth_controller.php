@@ -52,7 +52,7 @@ function db_create_user($user_data){
         if(mysqli_query($con, $query)){
             return array('success' => true);
         }
-        else return array('success' => false, 'error' => array('message' => 'Internal Server error: Failed to register user'));
+        else return array('success' => false, 'error' => array('message' => 'Failed to register user: Email does not match any employee'));
     }
     else return array('success' => false, 'error' => array('message' => 'User already exist')); //false
 

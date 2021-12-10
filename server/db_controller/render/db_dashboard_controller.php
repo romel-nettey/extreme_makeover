@@ -50,7 +50,7 @@ function get_project($proj_id){
 function search_projects($search = ""){
     global $con;
     if($search == "") $result = mysqli_query($con,"SELECT * FROM `project`");
-    else $result = mysqli_query($con,"SELECT * FROM `project` WHERE project_id LIKE '%$search%' OR proj_description LIKE '%$search%' OR proj_cost LIKE '%$search%' OR proj_status LIKE '%$search%' OR start_date LIKE '%$search%' OR end_date LIKE '%$search%'");
+    else $result = mysqli_query($con,"SELECT * FROM `project` WHERE project_id LIKE '%$search%' OR proj_description LIKE '%$search%' OR proj_cost LIKE '%$search%' OR proj_status LIKE '%$search%' OR start_date LIKE '%$search%' OR end_date LIKE '%$search%' OR Designs_id LIKE '%$search%'");
      $projects = [];
     while($project = mysqli_fetch_assoc($result)){
         array_push($projects,$project);
@@ -273,7 +273,7 @@ function delete_user($admin_id){
 
 function get_user_privilege($admin_id){
     global $con;
-    $result =  mysqli_query($con, "SELECT privilege FROM login_db WHERE  user_email = '$admin_id'");
+    $result =  mysqli_query($con, "SELECT privilege FROM login_db WHERE  user_email = '$admin_id' LIMIT 1");
     if($result) return array('success' => true, 'data' => mysqli_fetch_assoc($result)['privilege']);
     return array('success' => false, 'message' => 'failed to delete');
 }

@@ -1,5 +1,5 @@
 <?php
-// php file used to test functions run properly
+// php file I used to test functions run properly
 
 include "auth/db_auth_controller.php";
 include "render/db_dashboard_controller.php";

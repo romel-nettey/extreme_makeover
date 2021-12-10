@@ -7,10 +7,10 @@ $( document ).ready(function() {
 
             $('#clients').html(response.data);
             // displays number of projects, employees, etc on the dashboard
+            display_projects();
             display_num_employees();
             display_num_projects();
             display_num_designs();
-            display_projects();
             isPrivileged_D();
 
         },
@@ -261,12 +261,16 @@ function isPrivileged_D(){
         url: "./server/db_controller/render/dashboard.php",
         data: {get_user_priviledge: {admin_id}},
         success: function(response) {
-            
+            console.log(response.data);
            if(response.data == 0) {
                 
-            $('.privilege_T').addClass('hide');
-              
+            setTimeout(() => {
+                $('.privilege_T').addClass('hide');
+                console.log(response.data);
+              }, 20);
+           
            }
+        
 
         },
         error: function (XMLHttpRequest, textStatus, errorThrown) {

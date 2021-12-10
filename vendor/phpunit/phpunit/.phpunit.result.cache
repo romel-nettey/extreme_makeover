@@ -1,1 +1,1 @@
-{"version":1,"defects":{"StandaloneTest::testSomethingFails":3},"times":{"DirectoryExistsTest::testFailure":0.014,"StandaloneTest::testStandalone":0.001,"StandaloneTest::testSomethingFails":0,"StandaloneTest::testAnotherThingFails":0}}
+{"version":1,"defects":{"StandaloneTest::testSomethingFails":3,"ConnectionTest::testConnectionClassExists":3},"times":{"DirectoryExistsTest::testFailure":0.014,"StandaloneTest::testStandalone":0.008,"StandaloneTest::testSomethingFails":0,"StandaloneTest::testAnotherThingFails":0,"ConnectionTest::testConnectionClassExists":0.027}}
