@@ -4,10 +4,11 @@ $( document ).ready(function() {
         url: "../server/db_controller/render/dashboard.php",
         data: {is_all_admin: true},
         success: function(response) {
-
+            // displays all accounts on the admin control page
             response.data.forEach(admin_data => {
                 $('#admin_render').append(render_admin_table(admin_data));
             });
+            // hides the edit and delete button of the admin
             $('.Privilege31').addClass('hide');
         },
         error: function (XMLHttpRequest, textStatus, errorThrown) {
@@ -19,6 +20,7 @@ $( document ).ready(function() {
           },
     });
 
+    // implements the search functionality of the page
     $("#search_field_A").keyup(function(event) {
         $("#admin_render").html("");
         $("#admin_render").html("");
@@ -29,6 +31,7 @@ $( document ).ready(function() {
 });
 
 function render_admin_table(admin_data){
+    // contains html elements that would be displayed on the page by ajax
     const admin_table = `<tr class="text-gray-700 dark:text-gray-400 A${admin_data.id}">
                             <td class="px-4 py-3">
                             <div>
@@ -88,12 +91,13 @@ function render_admin_table(admin_data){
 }
 
 function admin_id_value_sender(admin_id){
+    // stores value of the account to be edited id and sends it to the update page
     localStorage.setItem("admin_id_value", admin_id);
     window.location.href="./update_privilege.html";
 }
 
 function update_user_privilege(){
-
+    //updates the user privilege 
     admin_id = localStorage.getItem("admin_id_value");
     new_privilege = $('#privilege :selected').text();
 
@@ -163,6 +167,7 @@ function delete_user(admin_id){
 }
 
 function isPrivileged(){
+    // checks if the logged in account has the privilege to acces controls on the page, if not, hides all controls
     a = currentUser();
     admin_id = a.email;
 
@@ -195,6 +200,7 @@ function isPrivileged(){
 
 
 function searched_account(search =""){
+    //receives search input and displays the search results on the page
     $.ajax({
         type: "post",
         url: "../server/db_controller/render/dashboard.php",

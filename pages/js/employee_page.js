@@ -4,12 +4,15 @@ $( document ).ready(function() {
         url: "../server/db_controller/render/dashboard.php",
         data: {is_all_employees: true},
         success: function(response) {
-
+            // displays employee data on the page
             response.data.forEach(emp_data => {
                 $('#empT_render').append(render_emp_table(emp_data));
             });
 
+            // hides admin data from employee table
             $('.E26').addClass("hide");
+
+            // checks privilege of user
             isPrivileged_E();
             
 
@@ -23,9 +26,13 @@ $( document ).ready(function() {
           },
     });
 
+     //conatains logged in users sign in info (email)
     const currentUserData =  currentUser();
+
+    // displays avatar icon with users initials
     $('#avatar_e').attr('src',`https://avatars.dicebear.com/api/initials/${currentUserData.email}.svg`);
 
+     //implements the search functionality on the page
     $("#search_field_E").keyup(function(event) {
         $("#empT_render").html("");
         text = $(this).val();
@@ -34,6 +41,7 @@ $( document ).ready(function() {
 });
 
 function render_emp_table(emp_data){
+    // conatains html data to be displayed on the page based on employee data
     const emp_table = `<tr class="text-gray-700 dark:text-gray-400 E${emp_data.employee_id}">
                             <td class="px-4 py-3">
                             <div>
@@ -138,12 +146,14 @@ function delete_employee(employee_id){
 }
 
 function employee_id_value_sender(employee_id){
+     // stores employee id to be updated and relocates to the update page
     localStorage.setItem("employee_id_value", employee_id);
     window.location.href="./update_employee.html";
     
 }
 
 function isPrivileged_E(){
+    // checks privilege of logged in user
     a = currentUser();
     admin_id = a.email;
     
@@ -171,6 +181,7 @@ function isPrivileged_E(){
 }
 
 function searched_employees(search = 0){
+    // displays employee data on the dashboard based on search results
     $.ajax({
         type: "post",
         url: "../server/db_controller/render/dashboard.php",
@@ -197,6 +208,7 @@ function searched_employees(search = 0){
 }
 
 function get_employee_data(employee_id){
+    // stores employee data 
     $.ajax({
         type: "post",
         url: "../server/db_controller/render/dashboard.php",

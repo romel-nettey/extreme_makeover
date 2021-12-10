@@ -6,6 +6,7 @@ $( document ).ready(function() {
         success: function(response) {
 
             $('#clients').html(response.data);
+            // displays number of projects, employees, etc on the dashboard
             display_num_employees();
             display_num_projects();
             display_num_designs();
@@ -95,7 +96,7 @@ function display_num_designs(){
 }
 
 function display_projects(search = 'P'){
-
+    // displays project info on the dashboard based on search results
     $.ajax({
         type: "post",
         url: "./server/db_controller/render/dashboard.php",
@@ -104,6 +105,7 @@ function display_projects(search = 'P'){
 
             response.data.forEach(proj_data => {
                 $('#t_render').append(render_proj_table(proj_data));
+                //a different style is applied on status based on the info
                 if(proj_data.proj_status == "on hold"){
                     $(`#${proj_data.project_id}`).addClass('text-orange-700 bg-orange-100 dark:text-white dark:bg-orange-600');
                 }
@@ -128,6 +130,7 @@ function display_projects(search = 'P'){
 }
    
 function render_proj_table(proj_data){
+    // contains data to be displayed on the page based on project data
     const proj_table = `<tr class="text-gray-700 dark:text-gray-400 ${proj_data.project_id}">
                             <td class="px-4 py-3">
                             <div>
@@ -197,9 +200,6 @@ function render_proj_table(proj_data){
                             </td>
                         </tr>`
 
-        
-        
-        
                         
         return proj_table;
 }
@@ -241,6 +241,7 @@ function delete_project(project_id){
 }
 
 function proj_id_value_sender(proj_id){
+    // stores project id to be updated and relocates to the update page
     const project_id= proj_id; 
     localStorage.setItem("proj_id_value", project_id );
     setTimeout(() => {
@@ -251,6 +252,7 @@ function proj_id_value_sender(proj_id){
 
 
 function isPrivileged_D(){
+    // checks privilege of logged in user
     a = currentUser();
     admin_id = a.email;
     
@@ -278,6 +280,7 @@ function isPrivileged_D(){
 }
 
 function get_proj_data(project_id){
+    // stores project data based on project id
     $.ajax({
         type: "post",
         url: "./server/db_controller/render/dashboard.php",

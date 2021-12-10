@@ -6,7 +6,7 @@ $( document ).ready(function() {
         success: function(response) {
             
            if(response.success) {
-           
+            // inserts design data in the select option tag on the insert_project.html page
             response.data.forEach(design_data => {
                 $(render_design_dropdown(design_data)).insertAfter($('#design-dropdown'));
             });
@@ -25,11 +25,16 @@ $( document ).ready(function() {
           },
     });
 
+      //conatains logged in users sign in info (email)
+      const currentUserData =  currentUser();
 
+      // displays avatar icon with users initials
+      $('#avatar_c').attr('src',`https://avatars.dicebear.com/api/initials/${currentUserData.email}.svg`);
 
 }); 
 
 function insert_project(){
+    // collects the data typed in the input box and inserts it into the database
     project_id = $('#insert-projID').val();
     proj_description = $('#insert-projDescr').val();
     Designs_id = $('#insert-projDesign-ID').val();
@@ -86,6 +91,7 @@ function insert_project(){
 
 
 function render_design_dropdown(design_data){
+    //displays the data in the select dropdown
     const design_dropdown = `<option value="${design_data.designs_id}">${design_data.designs_id}</option>`
     return design_dropdown;
 }

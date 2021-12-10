@@ -6,6 +6,7 @@ $( document ).ready(function() {
         success: function(response) {
 
             response.data.forEach(payment_data => {
+                // displays payment data on the page
                 $('#payT_render').append(render_payment_table(payment_data));
             });
 
@@ -19,8 +20,11 @@ $( document ).ready(function() {
           },
     });
 
-    const currentUserData =  currentUser();
-    $('#avatar_p').attr('src',`https://avatars.dicebear.com/api/initials/${currentUserData.email}.svg`);
+      //conatains logged in users sign in info (email)
+      const currentUserData =  currentUser();
+
+      // displays avatar icon with users initials
+      $('#avatar_c').attr('src',`https://avatars.dicebear.com/api/initials/${currentUserData.email}.svg`);
 
     $("#search_field_P").keyup(function(event) {
         $("#payT_render").html("");
@@ -64,6 +68,7 @@ function render_payment_table(payment_data){
 }
 
 function searched_payment(search = ""){
+    // displays payment info on page based on search results
     $.ajax({
         type: "post",
         url: "../server/db_controller/render/dashboard.php",
