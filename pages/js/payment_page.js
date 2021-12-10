@@ -24,7 +24,7 @@ $( document ).ready(function() {
       const currentUserData =  currentUser();
 
       // displays avatar icon with users initials
-      $('#avatar_c').attr('src',`https://avatars.dicebear.com/api/initials/${currentUserData.email}.svg`);
+      $('#avatar_p').attr('src',`https://avatars.dicebear.com/api/initials/${currentUserData.email}.svg`);
 
     $("#search_field_P").keyup(function(event) {
         $("#payT_render").html("");

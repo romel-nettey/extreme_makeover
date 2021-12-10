@@ -1,3 +1,12 @@
+$( document ).ready(function() {
+     //conatains logged in users sign in info (email)
+     const currentUserData =  currentUser();
+
+     // displays avatar icon with users initials
+     $('#avatar_eu').attr('src',`https://avatars.dicebear.com/api/initials/${currentUserData.email}.svg`);
+
+});
+
 
 function update_employee_phone_no(){
 
@@ -31,6 +40,8 @@ function update_employee_phone_no(){
            
           },
     });
+
+    
 }
 
 function update_employee_address(){

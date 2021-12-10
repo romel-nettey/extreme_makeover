@@ -20,6 +20,13 @@ $( document ).ready(function() {
           },
     });
 
+      //conatains logged in users sign in info (email)
+      const currentUserData =  currentUser();
+
+      // displays avatar icon with users initials
+      $('#avatar_a').attr('src',`https://avatars.dicebear.com/api/initials/${currentUserData.email}.svg`);
+
+
     // implements the search functionality of the page
     $("#search_field_A").keyup(function(event) {
         $("#admin_render").html("");
